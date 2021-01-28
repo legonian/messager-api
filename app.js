@@ -28,7 +28,7 @@ app.use('/api/messages', messagesRoute)
 // Errors
 app.use(function (_req, _res, next) {
   next(createError(404))
-}) 
+})
 app.use(function (err, req, res, _next) {
   res.status(err.status || 500)
 
