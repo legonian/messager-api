@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const helmet = require('helmet')
 const compression = require('compression')
+const createError = require('http-errors')
 
 const messagesRoute = require('./message-router')
 
@@ -32,9 +33,9 @@ app.use(function (err, req, res, _next) {
   res.status(err.status || 500)
 
   if (req.app.get('env') === 'development') {
-    res.send('Requested data do not exist.')
-  } else {
     res.send(err)
+  } else {
+    res.send('Requested data do not exist.')
   }
 })
 
