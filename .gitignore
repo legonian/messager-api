@@ -66,4 +66,3 @@ heroku_cmds.txt
 # .env
 # test*.js
 .vscode/
-.code-workspace
