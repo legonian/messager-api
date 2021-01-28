@@ -12,15 +12,17 @@ Presented API using following tools/features:
 + Simple verification using Mongoose model matching
 
 ## Demo
-Demo app example is running in Heroku Cloud.
+Demo app example is running in Heroku Cloud:
+
+https://messages-0451.herokuapp.com/
 
 ## Installation
 
 To install type in console:
 
 ```
-$ git clone https://github.com/legonian/nodejs-website
-$ cd nodejs-website
+$ git clone https://github.com/legonian/messager-api
+$ cd messager-api
 $ npm ci
 ```
 
