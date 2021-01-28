@@ -1,20 +1,41 @@
 const express = require('express')
 const app = express()
+const helmet = require('helmet')
+const compression = require('compression')
 
-const config = require('./middleware/app-config')
-const errorHandling = require('./middleware/app-error')
+const messagesRoute = require('./message-router')
 
-const rootRoute = require('./route/root')
-const messagesRoute = require('./route/messages')
-
+// Trust 1 proxy hop for Heroku
 app.set('trust proxy', 1)
-app.locals.ipList = {}
 
-app.use(config)
+// Config middlewares
+app.use(compression())
+app.use(helmet())
+app.use(function (_req, res, next) {
+  res.set('Cache-Control', 'no-cache, no-store, must-revalidate')
+  res.set('Pragma', 'no-cache')
+  res.set('Expires', '-1')
+  next()
+})
+app.use(express.json({ limit: '5kb' }))
+app.use(express.urlencoded({ extended: false, limit: '5kb' }))
 
-app.use('/', rootRoute)
+// Routes
+app.get('/', (_req, res) => res.send('Nothing There'))
 app.use('/api/messages', messagesRoute)
 
-app.use(errorHandling)
+// Errors
+app.use(function (_req, _res, next) {
+  next(createError(404))
+}) 
+app.use(function (err, req, res, _next) {
+  res.status(err.status || 500)
+
+  if (req.app.get('env') === 'development') {
+    res.send('Requested data do not exist.')
+  } else {
+    res.send(err)
+  }
+})
 
 module.exports = app

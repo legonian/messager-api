@@ -1,4 +1,4 @@
-const Message = require('../model/message')
+const Message = require('./message-model')
 
 module.exports.messagePage = async function (req, res) {
   const limit = 10

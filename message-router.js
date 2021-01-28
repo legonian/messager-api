@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
-const { oneMessage, messagePage, newMessage } = require('../controller/message')
+const { oneMessage, messagePage, newMessage } = require('./message-controller')
 
 router.get('/list', function (_req, res) {
   res.redirect('/api/messages/list/0')
