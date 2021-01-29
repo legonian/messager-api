@@ -8,8 +8,8 @@ router.get('/list', function (_req, res) {
 
 router.get('/list/:page', messagePage)
 
-router.post('/new', newMessage)
-
 router.get('/single/:id', oneMessage)
+
+router.post('/new', newMessage)
 
 module.exports = router
