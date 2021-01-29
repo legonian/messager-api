@@ -34,14 +34,15 @@ module.exports.newMessage = async function (req, res) {
 
 module.exports.oneMessage = async function (req, res) {
   const messageId = req.params.id
+  const resJson = { error: null }
 
   try {
-    const mess = await Message.findById(messageId).exec()
-    mess.error = null
+    resJson.message = await Message.findById(messageId).exec()
     res.status(200)
-    res.json(mess)
   } catch (err) {
+    resJson.error = err.name
     res.status(404)
-    res.json({ error: err.name })
+  } finally {
+    res.json(resJson)
   }
 }
