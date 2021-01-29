@@ -10,11 +10,18 @@ Presented API using following tools/features:
 + Express web-framework
 + NoSQL database MongoDB using Mongoose ODM
 + Simple verification using Mongoose model matching
++ API Documentation using OpenAPI 3.0
 
 ## Demo
 Demo app example is running in Heroku Cloud:
 
 https://messages-0451.herokuapp.com/
+
+## Documentation
+
+Documentation for API available at:
+
+https://app.swaggerhub.com/apis-docs/legonian/Messager/1.0.0
 
 ## Installation
 
